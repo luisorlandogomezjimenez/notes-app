@@ -10,9 +10,9 @@ passport.use(
     },
     async (email, password, done) => {
       //Match Email's User
-      const user = await User.findOne(email);
+      const user = await User.findOne({ email });
       if (!user) {
-        return done(null, false, { message: "Not user found." });
+        return done(null, false, { message: "User not found" });
       } else {
         //Match password's user
         const match = await user.matchPassword(password);
